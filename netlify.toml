@@ -1,12 +1,12 @@
 [build]
   command = "npm run build:client"
-  functions = "netlify/functions"
   publish = "dist/spa"
-
+  functions = "netlify/functions"
 
 [functions]
-  external_node_modules = ["express"]
-  node_bundler = "zisi"  
+  node_bundler = "zisi"
+  included_files = ["server/**", "shared/**"]
+
 [[redirects]]
   force = true
   from = "/api/*"
