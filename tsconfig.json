@@ -29,7 +29,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./client/*"],
-      "@shared/*": ["./shared/*"]
+      "@shared/*": ["./shared/*"],
+      "server/*": ["./server/*"]
     }
   },
   "include": [
@@ -37,7 +38,8 @@
     "server/**/*",
     "shared/**/*",
     "vite.config.ts",
-    "vite.config.server.ts"
+    "vite.config.server.ts",
+    "netlify/functions/**/*"
   ],
   "exclude": ["node_modules", "dist"]
 }

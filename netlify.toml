@@ -1,11 +1,11 @@
 [build]
-  command = "npm run build:client"
+  # Build the server first, then the client
+  command = "npm run build:server && npm run build:client"
   publish = "dist/spa"
-  functions = "netlify/functions"
+  # Point to the directory with the bundled function
+  functions = "netlify/functions-dist"
 
-[functions]
-  node_bundler = "zisi"
-  included_files = ["server/**", "shared/**"]
+# We no longer need the [functions] section as the defaults will work
 
 [[redirects]]
   force = true

@@ -1,53 +1,29 @@
 import { defineConfig } from "vite";
 import path from "path";
 
-// Server build configuration
+// Server build configuration for Netlify
 export default defineConfig({
   build: {
-    lib: {
-      entry: path.resolve(__dirname, "server/node-build.ts"),
-      name: "server",
-      fileName: "production",
-      formats: ["es"],
-    },
-    outDir: "dist/server",
-    target: "node22",
+    // Output to a new directory for bundled functions
+    outDir: "netlify/functions-dist",
     ssr: true,
-    rollupOptions: {
-      external: [
-        // Node.js built-ins
-        "fs",
-        "path",
-        "url",
-        "http",
-        "https",
-        "os",
-        "crypto",
-        "stream",
-        "util",
-        "events",
-        "buffer",
-        "querystring",
-        "child_process",
-        // External dependencies that should not be bundled
-        "express",
-        "cors",
-      ],
-      output: {
-        format: "es",
-        entryFileNames: "[name].mjs",
-      },
+    lib: {
+      // Use the existing Netlify function file as the entry point
+      entry: "netlify/functions/api.ts",
+      formats: ["es"],
+      fileName: "api",
     },
-    minify: false, // Keep readable for debugging
-    sourcemap: true,
+    rollupOptions: {
+      // By default, Vite will bundle all dependencies.
+      // We don't need to specify externals.
+    },
   },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./client"),
       "@shared": path.resolve(__dirname, "./shared"),
+      // Add an alias for the server directory to help Vite resolve it
+      "server": path.resolve(__dirname, "./server"),
     },
-  },
-  define: {
-    "process.env.NODE_ENV": '"production"',
   },
 });
