@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import bodyParser from "body-parser"; // Import body-parser
 import { handleDemo } from "./routes/demo";
 import { handleSolve } from "./routes/solve";
 
@@ -9,7 +10,7 @@ export function createServer() {
 
   // Middleware
   app.use(cors());
-  app.use(express.json());
+  app.use(bodyParser.json()); // Use bodyParser.json()
   app.use(express.urlencoded({ extended: true }));
 
   // Example API routes
