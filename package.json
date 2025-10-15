@@ -20,13 +20,12 @@
     "format.fix": "prettier --write .",
     "typecheck": "tsc"
   },
- "dependencies": {
-  "body-parser": "^1.20.2",
-  "cors": "^2.8.5",
-  "dotenv": "^17.2.1",
-  "express": "^4.19.2",
-  "zod": "^3.25.76"
-},
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "zod": "^3.25.76"
+  },
   "devDependencies": {
     "@hookform/resolvers": "^5.2.1",
     "@radix-ui/react-accordion": "^1.2.11",
