@@ -12,6 +12,16 @@ function sortByConstraintTightness(classes: ClassDemand[], candidateCounts: Map<
 
 export const handleSolve: RequestHandler = (req, res) => {
   const body = req.body as SolveRequest;
+
+  // Add this guard clause to check for a valid request body
+  if (!body || !body.timeslots || !body.teachers || !body.classes || !body.groups || !body.topics) {
+    return res.status(400).json({
+      assignments: [],
+      unscheduled: [],
+      conflicts: ["Invalid request body. Please provide timeslots, teachers, classes, groups, and topics."],
+    });
+  }
+  
   const { timeslots, teachers, classes, groups, topics } = body;
 
   // Basic validation collections
